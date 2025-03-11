@@ -23,5 +23,6 @@ var editor = CodeMirror.fromTextArea(document.getElementById("ruby-code"), {
   lineNumbers: true,
   matchBrackets: true,
   autoCloseBrackets: true,
-  value: defaultRubyCode,
 });
+
+editor.getDoc().setValue(defaultRubyCode);
