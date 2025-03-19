@@ -34,7 +34,7 @@ Follow the steps below to clone the repository and initialize its submodules:
 1. Clone the Repository and Initialize Submodules
 
 ```console
-$ git clone https://github.com/OpenBlink/webide.git
+$ git clone https://github.com/OpenBlink/openblink-webide.git
 $ git submodule init
 $ git submodule update
 ```
@@ -91,7 +91,7 @@ public_html $ python3 -m http.server 8000
 1. 克隆存储库并初始化子模块
 
 ```console
-$ git clone https://github.com/OpenBlink/webide.git
+$ git clone https://github.com/OpenBlink/openblink-webide.git
 $ git submodule init
 $ git submodule update
 ```
@@ -148,7 +148,7 @@ public_html $ python3 -m http.server 8000
 1. リポジトリのクローンとサブモジュールの初期化
 
 ```console
-$ git clone https://github.com/OpenBlink/webide.git
+$ git clone https://github.com/OpenBlink/openblink-webide.git
 $ git submodule init
 $ git submodule update
 ```
