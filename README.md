@@ -1,5 +1,7 @@
 # OpenBlink WebIDE
 
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/OpenBlink/openblink-webide)
+
 English text is followed by Chinese and Japanese translations. / 英文后面是中文和日文翻译。/ 英語の文章の後に中国語と日本語訳が続きます。
 
 ## What is OpenBlink WebIDE
