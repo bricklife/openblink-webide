@@ -8,7 +8,7 @@ English text is followed by Chinese and Japanese translations. / 英文后面是
 - Provide "Thinking Speed Prototyping" not only to embedded software engineers, but to anyone who wants to try out ideas quickly, easily, and on real devices. (Without special equipment.)
 - Provide "DIY-able value" where end users can run the programs they create on their own devices. (We call it "Build & Blink".)
 
-For comprehensive documentation, please visit [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/OpenBlink/openblink-webide).
+For AI-powered comprehensive documentation that helps you understand the codebase, visit [DeepWiki](https://deepwiki.com/OpenBlink/openblink-webide).
 
 ## How to Use OpenBlink WebIDE (Cloud)
 
@@ -67,7 +67,7 @@ mruby $ rake MRUBY_CONFIG=../emscripten.rb
 - 提供"思考速度原型设计"，不仅适用于嵌入式软件工程师，还适用于任何想要在真实设备上快速、轻松尝试想法的人。（无需特殊设备。）
 - 提供"可 DIY 价值"，最终用户可以在自己的设备上运行他们创建的程序。（我们称之为"构建与闪烁"。）
 
-关于详细文档，请访问 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/OpenBlink/openblink-webide)。
+如需查阅AI驱动的全面文档以帮助您理解代码库，请访问 [DeepWiki](https://deepwiki.com/OpenBlink/openblink-webide)。
 
 ## 如何使用 OpenBlink WebIDE（云端）
 
@@ -126,7 +126,7 @@ mruby $ rake MRUBY_CONFIG=../emscripten.rb
 - 「思考速度プロトタイピング」を組込みソフトウェアエンジニアだけでなく、アイデアを素早く、簡単に、実機で試したい人にも提供。（特別な機器不要。）
 - エンドユーザーが自分のデバイスで作成したプログラムを実行できる「DIY 可能な価値」を提供。（私たちはこれを「Build & Blink」と呼んでいます。）
 
-詳細なドキュメントについては、[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/OpenBlink/openblink-webide)をご覧ください。
+コードベースの理解を助けるAI駆動の包括的なドキュメントは、[DeepWiki](https://deepwiki.com/OpenBlink/openblink-webide) をご覧ください。
 
 ## OpenBlink WebIDE（クラウド）の使い方
 
