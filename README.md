@@ -67,7 +67,7 @@ mruby $ rake MRUBY_CONFIG=../emscripten.rb
 - 提供"思考速度原型设计"，不仅适用于嵌入式软件工程师，还适用于任何想要在真实设备上快速、轻松尝试想法的人。（无需特殊设备。）
 - 提供"可 DIY 价值"，最终用户可以在自己的设备上运行他们创建的程序。（我们称之为"构建与闪烁"。）
 
-如需查阅AI驱动的全面文档以帮助您理解代码库，请访问 [DeepWiki](https://deepwiki.com/OpenBlink/openblink-webide)
+如需查阅AI驱动的全面文档以帮助您理解代码库，请访问 [DeepWiki](https://deepwiki.com/OpenBlink/openblink-webide)。
 
 ## 如何使用 OpenBlink WebIDE（云端）
 
