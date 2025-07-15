@@ -1,24 +1,22 @@
-const defaultRubyCode = `# RGB LED Blinking Example
+const defaultRubyCode = `# RGB LED Blinking and Sound Example
+$ON_JINGLE = "jingle_on"
+$OFF_JINGLE = "jingle_off"
+$LED_OFF = [0, 0, 0]
+$LED_RED = [15, 0, 0]
+$LED_GREEN = [0, 15, 0]
+$LED_BLUE = [0, 0, 15]
+$LED_MAGENTA = [15, 0, 15]
+$LED_CYAN = [0, 15, 15]
+$LED_YELLOW = [15, 15, 0]
+
 while true do
-  # Red
-  LED.set([255, 0, 0])
+  Sound.play(mml: $ON_JINGLE)
+  LED.set(part: :right, color: $LED_RED)
   sleep 1
-
-  # Green
-  LED.set([0, 255, 0])
+  LED.set(part: :right, color: $LED_GREEN)
   sleep 1
-
-  # Blue
-  LED.set([0, 0, 255])
+  LED.set(part: :right, color: $LED_BLUE)
   sleep 1
-
-  # Check if reload is requested
-  # This line is crucial in OpenBlink applications. It allows the program to gracefully exit
-  # the current execution loop when a code reload is requested through the Bluetooth interface.
-  # Without this check, the program would continue running and ignore reload requests,
-  # making development and debugging difficult. This mechanism enables the "Blink" feature -
-  # the ability to update code wirelessly in less than 0.1 seconds without restarting the microprocessor.
-  break if Blink.req_reload?
 end
 `;
 

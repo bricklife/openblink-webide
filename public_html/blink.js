@@ -4,6 +4,7 @@
  */
 let programCharacteristic;
 let negotiatedMtuCharacteristic;
+let systemCharacteristic;
 const MAX_CHUNK_SIZE = 20;
 const DATA_HEADER_SIZE = 6;
 const DATA_PAYLOAD_SIZE = MAX_CHUNK_SIZE - DATA_HEADER_SIZE;
@@ -91,7 +92,7 @@ async function sendReload() {
 async function sendFirmware(mrbContent) {
   const contentLength = mrbContent.length;
   const crc16 = crc16_reflect(0xd175, 0xffff, mrbContent);
-  const slot = 2;
+  const slot = 1;
 
   if (!programCharacteristic) {
     console.error("no program characteristic");
@@ -131,20 +132,28 @@ async function sendFirmware(mrbContent) {
     }
   }
 
-  const programBuffer = new ArrayBuffer(PROGRAM_HEADER_SIZE);
+  const programBuffer = new ArrayBuffer(16 * 3);
   const programView = new DataView(programBuffer);
 
   programView.setUint8(0, 0x01); // version = 0x01
   programView.setUint8(1, "P".charCodeAt(0)); // command = 'P'
-  programView.setUint16(2, contentLength, true); // length
-  programView.setUint16(4, crc16, true); // crc: CRC16
-  programView.setUint8(6, slot); // slot
-  programView.setUint8(7, 0); // reserved
+  programView.setUint8(2, 0x01);
+  programView.setUint8(3, 0x02);
+  programView.setUint8(4, 0x03);
+  programView.setUint8(5, 0x04);
+  programView.setUint8(6, 0x05);
+  programView.setUint8(7, 0x06);
+  programView.setUint8(8, 0x07);
+  programView.setUint8(9, 0x08);
+  programView.setUint16(10, contentLength, true); // length
+  programView.setUint16(12, crc16, true); // crc: CRC16
+  programView.setUint8(programBuffer.byteLength - 2, slot); // slot
+  programView.setUint8(programBuffer.byteLength - 1, 0); // reserved
 
   try {
     await writeCharacteristic(programCharacteristic, programBuffer);
     appendToConsole("Send [P]rogram Complete");
-    sendReload();
+    await programCharacteristic.readValue();
   } catch (error) {
     appendToConsole("Send [P]rogram Error:", error);
   }
@@ -153,13 +162,11 @@ async function sendFirmware(mrbContent) {
 Module.onRuntimeInitialized = () => {
   console.log("Emscripten runtime initialized.");
 
-  const openblinkServiceUUID = "227da52c-e13a-412b-befb-ba2256bb7fbe";
+  const openblinkServiceUUID = "bdb266cb-49a0-4e85-9fa4-dea727f5b295";
   const openblinkProgramCharacteristicUUID =
-    "ad9fdd56-1135-4a84-923c-ce5a244385e7";
-  const openblinkConsoleCharacteristicUUID =
-    "a015b3de-185a-4252-aa04-7a87d38ce148";
-  const openblinkNegotiatedMtuCharacteristicUUID =
-    "ca141151-3113-448b-b21a-6a6203d253ff";
+    "a9ef1c37-a0cd-4d4a-8b27-a35793d375ee";
+  const openblinkSystenCharacteristicUUID =
+    "5d36b971-fa52-461a-9d1f-aacb24ddd4c1";
   const bleConnectButton = document.getElementById("ble-connect");
   const runMainButton = document.getElementById("run-main");
   const rebootButton = document.getElementById("soft-reset");
@@ -173,7 +180,7 @@ Module.onRuntimeInitialized = () => {
     navigator.bluetooth
       .requestDevice({
         filters: [
-          { namePrefix: "OpenBlink" },
+          { namePrefix: "ViXion01S" },
           { services: [openblinkServiceUUID] },
         ],
       })
@@ -188,17 +195,16 @@ Module.onRuntimeInitialized = () => {
       .then((service) => {
         console.log("Got service:", service);
         return Promise.all([
-          service.getCharacteristic(openblinkConsoleCharacteristicUUID),
           service.getCharacteristic(openblinkProgramCharacteristicUUID),
-          service.getCharacteristic(openblinkNegotiatedMtuCharacteristicUUID),
+          service.getCharacteristic(openblinkSystenCharacteristicUUID),
         ]);
       })
       .then((characteristics) => {
         const consoleCharacteristic = characteristics[0];
-        programCharacteristic = characteristics[1];
-        negotiatedMtuCharacteristic = characteristics[2];
-        console.log("Got console characteristic:", consoleCharacteristic);
+        programCharacteristic = characteristics[0];
+        systemCharacteristic = characteristics[1];
         console.log("Got program characteristic:", programCharacteristic);
+        console.log("Got system characteristic:", systemCharacteristic);
         console.log(
           "Got negotiatedMTU characteristic:",
           negotiatedMtuCharacteristic
