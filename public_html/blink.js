@@ -61,6 +61,21 @@ async function writeCharacteristic(characteristic, buffer) {
   }
 }
 
+async function unload() {
+  const buffer = new ArrayBuffer(3);
+  const view = new DataView(buffer);
+  view.setUint8(0, 0x01); // version = 0x01
+  view.setUint8(1, "F".charCodeAt(0)); // command = 'F'
+  view.setUint8(2, 0x01); // slot = 0x01
+
+  try {
+    programCharacteristic.writeValue(buffer);
+    appendToConsole("Send [F] Complete");
+  } catch (error) {
+    appendToConsole("Send [F] Error:", error);
+  }
+}
+
 async function sendReset() {
   const buffer = new ArrayBuffer(2);
   const view = new DataView(buffer);
@@ -169,7 +184,12 @@ Module.onRuntimeInitialized = () => {
     "5d36b971-fa52-461a-9d1f-aacb24ddd4c1";
   const bleConnectButton = document.getElementById("ble-connect");
   const runMainButton = document.getElementById("run-main");
+  const unloadButton = document.getElementById("unload");
   const rebootButton = document.getElementById("soft-reset");
+
+  unloadButton.addEventListener("click", () => {
+    unload();
+  });
 
   rebootButton.addEventListener("click", () => {
     sendReset();
