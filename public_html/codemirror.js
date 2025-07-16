@@ -17,6 +17,8 @@ while true do
   sleep 1
   LED.set(part: :right, color: $LED_BLUE)
   sleep 1
+  
+  break if Power.req_reload?
 end
 `;
 
